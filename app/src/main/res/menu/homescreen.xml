@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".homescreen" >
+    <item android:id="@+id/data_menu"
+        android:title="Explore Data"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+</menu>
