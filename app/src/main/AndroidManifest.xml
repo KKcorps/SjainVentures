@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.kkcorps.sjainventures" >
+<uses-sdk android:minSdkVersion="15"
+    android:targetSdkVersion="20">
+
+    </uses-sdk>
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"

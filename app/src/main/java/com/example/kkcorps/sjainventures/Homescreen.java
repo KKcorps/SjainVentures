@@ -1,16 +1,26 @@
 package com.example.kkcorps.sjainventures;
 
 import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.view.GravityCompat;
+
 
 
 public class Homescreen extends Activity{
@@ -19,6 +29,11 @@ public class Homescreen extends Activity{
     int REQUEST = 101;
     public static TextView nameDisplay;
     public static TextView linkView;
+    private String[] mAppTitles;
+    private DrawerLayout mDrawerLayout;
+    private ListView mDrawerList;
+    private ActionBarDrawerToggle mDrawerToggle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +102,76 @@ public class Homescreen extends Activity{
             }
         });
 
+        //Setting up Navigation Drawer
+        mAppTitles = getResources().getStringArray(R.array.activity_list);
+        //Log.i(TAG, mAppTitles[0]);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+
+        //Toggle Drawer with action Bar
+        mDrawerToggle = new ActionBarDrawerToggle(this,mDrawerLayout,R.drawable.logo,R.string.openSettings,R.string.closeSettings);
+
+        // Set the adapter for the list view
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+                R.layout.drawer_list_item, mAppTitles));
+        //Log.i(TAG,"String Adapter set");
+
+        // Set the list's click listener
+        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        Log.i(TAG,"listener set");
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        //getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
+
+    }
+
+    /* The click listener for ListView in the navigation drawer */
+    private class DrawerItemClickListener implements ListView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            selectItem(position);
+            Log.i("Navigation", "In Item click listened method");
+
+        }
+    }
+
+
+    /** Starts activity corresponding to the drawer **/
+
+    private void selectItem(int position) {
+        Intent navigationDrawerActivity;
+        Log.i(TAG, String.valueOf(position));
+
+        switch (position) {
+            case 1:
+
+                navigationDrawerActivity = new Intent(Homescreen.this, DMS.class);
+                //navigationDrawerActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(navigationDrawerActivity);
+                break;
+
+            case 2:
+                navigationDrawerActivity = new Intent(Homescreen.this, QEA.class);
+                //navigationDrawerActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(navigationDrawerActivity);
+                break;
+
+            case 3:
+                navigationDrawerActivity = new Intent(Homescreen.this, NGM.class);
+                //navigationDrawerActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(navigationDrawerActivity);
+                break;
+
+            default:
+                mDrawerLayout.closeDrawer(mDrawerList);
+                break;
+        }
+
+        mDrawerList.setItemChecked(position, true);
+        mDrawerLayout.closeDrawers();
+
+        //setTitle(mPlanetTitles[position]);
 
     }
 
@@ -98,7 +183,9 @@ public class Homescreen extends Activity{
             Log.i(TAG, "UserName set");
 
         }
-        Log.i(TAG,"UserName not set");
+        else {
+            Log.i(TAG,"UserName not set");
+        }
     }
 
     /*    @Override
@@ -126,6 +213,20 @@ public class Homescreen extends Activity{
         }
 
     }*/
+
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        // Sync the toggle state after onRestoreInstanceState has occurred.
+        mDrawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        // Pass any configuration change to the drawer toggls
+        mDrawerToggle.onConfigurationChanged(newConfig);
+    }
 
 
     @Override

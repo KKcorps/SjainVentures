@@ -8,7 +8,18 @@
     <string name="dms_intro">DMS Infosystem is an ISO 9001:2008 Certified Company pioneer in Website and Software Development business. We develop robust web applications with sophisticated backend architecture and the most intuitive User Interface. We study and understand the end users, which helps us in designing and developing applications they can easily relate to. Our services include website design and production, online strategy development, E-Commerce development, rich media and online advertising, database development, search engine optimization, multimedia production, graphic design.</string>
     <string name="qea_intro">We are a group of IIT students, dedicated towards making us sure that YOU don\'t commit the mistakes WE did. As rightly said, experience is the best teacher, and we do have that, at least in terms of JEE.With The DREAM.In the comfortable environment of his or her home town. In a school where a student has spent most of his life. The student is getting the best coaching possible for an examination which is going to decide the future for the student.</string>
     <string name="ngm_intro">New Generation Media is young outdoor Advertising Media Company in India which has been in business for over three years. Our work culture is young but established, and our core values of leadership, growth and success are infused into everything we do.
+Now, we offer you Event Management, Creative Solutions, Media Planning and Buying, Brand Identity and Management, Interactive and PR Management are just a few strengths amongst our diverse and vast portfolio of offerings.
+    </string>
 
-Now, we offer you Event Management, Creative Solutions, Media Planning and Buying, Brand Identity and Management, Interactive and PR Management are just a few strengths amongst our diverse and vast portfolio of offerings.</string>
+    <string name="openSettings">Settings</string>
+    <string name="closeSettings">S Jain</string>
+
+    <string-array name="activity_list">
+        <item>Home</item>
+        <item>DMS</item>
+        <item>QEA</item>
+        <item>NGM</item>
+    </string-array>
+
 </resources>
 
